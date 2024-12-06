@@ -52,12 +52,12 @@ public class MainApp
         JLabel welcomeLabel = new JLabel("Wybierz zadanie do uruchomienia:", SwingConstants.CENTER);
         mainMenu.add(welcomeLabel);
 
-        JButton zad1Button = new JButton("Zadanie 1");
+        JButton zad1Button = new JButton("Zadanie 1 - zmiana koloru tła");
         zad1Button.addActionListener((ActionEvent e) -> showApp("Zadanie 1"));
         mainMenu.add(zad1Button);
 
         // TODO dodać kolejne zadania
-        JButton zad2Button = new JButton("Zadanie 2");
+        JButton zad2Button = new JButton("Zadanie 2 - prosty notatnik");
         zad2Button.addActionListener((ActionEvent e) -> showApp("Zadanie 2"));
         mainMenu.add(zad2Button);
 
