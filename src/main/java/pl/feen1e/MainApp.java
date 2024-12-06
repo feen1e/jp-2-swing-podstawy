@@ -29,7 +29,7 @@ public class MainApp
         // Dodanie kolejnych aplikacji do cardPanel
         cardPanel.add(createMenu(), "Menu");
         cardPanel.add(new Exercise1(), "Zadanie 1");
-        cardPanel.add(new JPanel(), "Zadanie 2");
+        cardPanel.add(new Exercise2(this), "Zadanie 2");
         // TODO dodać resztę aplikacji
 
         menuBar = new JMenuBar();
@@ -53,7 +53,7 @@ public class MainApp
         mainMenu.add(welcomeLabel);
 
         JButton zad1Button = new JButton("Zadanie 1");
-        zad1Button.addActionListener((ActionEvent e) -> cardLayout.show(cardPanel, "Zadanie 1"));
+        zad1Button.addActionListener((ActionEvent e) -> showApp("Zadanie 1"));
         mainMenu.add(zad1Button);
 
         // TODO dodać kolejne zadania
@@ -84,13 +84,24 @@ public class MainApp
     {
         menuBar.removeAll();
         menuBar.add(backButton);
+        menuBar.revalidate();
+        menuBar.repaint();
     }
 
     public void updateMenuBarForExercise2()
     {
         menuBar.removeAll();
         menuBar.add(backButton);
-        menuBar.add(new JButton("Nowy"));
+        JMenuItem newNote = new JMenuItem("Nowy");
+        newNote.addActionListener((ActionEvent e) -> Exercise2.newNote());
+
+        JMenuItem openNote = new JMenuItem("Otwórz");
+        JMenuItem saveNote = new JMenuItem("Zapisz");
+        JMenuItem closeNote = new JMenuItem("Zamknij");
+        menuBar.add(newNote);
+        menuBar.add(openNote);
+        menuBar.add(saveNote);
+        menuBar.add(closeNote);
     }
 
     public void updateMenuBarForExercise8()

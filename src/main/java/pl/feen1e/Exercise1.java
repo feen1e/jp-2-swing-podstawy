@@ -22,7 +22,7 @@ public class Exercise1 extends JPanel
 
     public Exercise1()
     {
-        setLayout(new BorderLayout(10, 10));
+        setLayout(new BorderLayout(10, 0));
 
         colourMap = new HashMap<>();
         colourMap.put("czerwony", Color.RED);
@@ -48,6 +48,7 @@ public class Exercise1 extends JPanel
         colourPanel.setBackground(Color.WHITE);
 
         JPanel inputPanel = new JPanel(new BorderLayout(5, 5));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         inputPanel.add(new JLabel("Wpisz nazwę koloru na który ma zostać zmienione tło: ", SwingConstants.CENTER),
                 BorderLayout.NORTH);
         inputPanel.add(colourField, BorderLayout.CENTER);
