@@ -6,7 +6,7 @@
 
     <groupId>pl.feen1e</groupId>
     <artifactId>jp-2-swing-podstawy</artifactId>
-    <version>0.1</version>
+    <version>0.3</version>
 
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
