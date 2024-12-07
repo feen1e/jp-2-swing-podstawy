@@ -28,10 +28,10 @@ public class Exercise3 extends JPanel
         inputField.setFont(new Font("Arial", Font.PLAIN, 16));
         inputField.setMargin(new Insets(5, 10, 5, 10));
 
-        JButton addButton = new JButton("Add");
+        JButton addButton = new JButton("Dodaj");
         addButton.addActionListener(this::addToList);
 
-        JButton removeButton = new JButton("Remove");
+        JButton removeButton = new JButton("Usuń");
         removeButton.addActionListener(this::removeFromList);
 
         JPanel inputPanel = new JPanel();
@@ -56,6 +56,15 @@ public class Exercise3 extends JPanel
         {
             int selected = shoppingList.getSelectedIndex();
             listModel.remove(selected);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nie wybrano elementu do usunięcia.",
+                    "Błąd",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 

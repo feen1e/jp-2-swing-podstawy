@@ -22,6 +22,8 @@ public class MainApp
         mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(800, 600);
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setTitle("Dominik Kaczmarek 281007 - Podstawy Swing - Menu główne");
 
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
@@ -50,14 +52,14 @@ public class MainApp
     public JPanel createMenu()
     {
         JPanel menuPanel = new JPanel();
-        menuPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        menuPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
         menuPanel.setLayout(new BorderLayout(5, 5));
         JLabel title = new JLabel("Wybierz zadanie do uruchomienia: ", SwingConstants.CENTER);
         title.setFont(new Font("Verdana", Font.PLAIN, 18));
         title.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
         menuPanel.add(title, BorderLayout.NORTH);
         JPanel mainMenu = new JPanel();
-        mainMenu.setLayout(new GridLayout(3, 3, 10, 10));
+        mainMenu.setLayout(new GridLayout(3, 3, 20, 20));
 
         JButton ex1Button = new JButton("Zadanie 1 - zmiana koloru tła");
         ex1Button.addActionListener((ActionEvent e) -> showApp("Zadanie 1"));
@@ -71,7 +73,7 @@ public class MainApp
         ex3Button.addActionListener((ActionEvent e) -> showApp("Zadanie 3"));
         mainMenu.add(ex3Button);
         // TODO dodać tytuły reszty zadań
-        JButton ex4Button = new JButton("Zadanie 4");
+        JButton ex4Button = new JButton("Zadanie 4 - konwerter jednostek");
         ex4Button.addActionListener((ActionEvent e) -> showApp("Zadanie 4"));
         mainMenu.add(ex4Button);
 
