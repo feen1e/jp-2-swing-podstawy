@@ -1,8 +1,11 @@
 package pl.feen1e;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
 
 public class MainApp
 {
@@ -12,6 +15,8 @@ public class MainApp
     private final JMenuBar menuBar;
     private final JButton backButton;
 
+    private final HashMap<String, String> titles = new HashMap<>();
+
     public static void main(String[] args)
     {
         SwingUtilities.invokeLater(MainApp::new);
@@ -19,11 +24,14 @@ public class MainApp
 
     public MainApp()
     {
+        FlatLightLaf.setup();
         mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(800, 600);
         mainFrame.setLocationRelativeTo(null);
-        mainFrame.setTitle("Dominik Kaczmarek 281007 - Podstawy Swing - Menu główne");
+
+        initializeTitles();
+        mainFrame.setTitle(titles.get("Menu"));
 
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
@@ -41,7 +49,7 @@ public class MainApp
 
         menuBar = new JMenuBar();
         backButton = new JButton("Powrót do Menu");
-        backButton.addActionListener((ActionEvent e) -> showMenu());
+        backButton.addActionListener((ActionEvent e) -> showApp("Menu"));
 
         mainFrame.setJMenuBar(menuBar);
         mainFrame.add(cardPanel);
@@ -72,7 +80,7 @@ public class MainApp
         JButton ex3Button = new JButton("Zadanie 3 - lista zakupów");
         ex3Button.addActionListener((ActionEvent e) -> showApp("Zadanie 3"));
         mainMenu.add(ex3Button);
-        // TODO dodać tytuły reszty zadań
+
         JButton ex4Button = new JButton("Zadanie 4 - konwerter jednostek");
         ex4Button.addActionListener((ActionEvent e) -> showApp("Zadanie 4"));
         mainMenu.add(ex4Button);
@@ -81,7 +89,7 @@ public class MainApp
         ex5Button.addActionListener((ActionEvent e) -> showApp("Zadanie 5"));
         mainMenu.add(ex5Button);
 
-        JButton ex6Button = new JButton("Zadanie 6");
+        JButton ex6Button = new JButton("Zadanie 6 - kalkulator BMI");
         ex6Button.addActionListener((ActionEvent e) -> showApp("Zadanie 6"));
         mainMenu.add(ex6Button);
 
@@ -96,22 +104,33 @@ public class MainApp
         JButton exitButton = new JButton("Zamknij program");
         exitButton.addActionListener((ActionEvent e) -> System.exit(0));
         mainMenu.add(exitButton);
+        // TODO dodać tytuły reszty zadań
 
         menuPanel.add(mainMenu, BorderLayout.CENTER);
         return menuPanel;
     }
 
-    private void showMenu()
+    private void initializeTitles()
     {
-        cardLayout.show(cardPanel, "Menu");
-        menuBar.setVisible(false);
+        titles.put("Menu", "Dominik Kaczmarek 281007 - Podstawy Swing - Menu główne");
+        titles.put("Zadanie 1", "Zadanie 1 - zmiana koloru tła");
+        titles.put("Zadanie 2", "Zadanie 2 - prosty notatnik");
+        titles.put("Zadanie 3", "Zadanie 3 - lista zakupów");
+        titles.put("Zadanie 4", "Zadanie 4 - konwerter jednostek");
+        titles.put("Zadanie 5", "Zadanie 5");
+        titles.put("Zadanie 6", "Zadanie 6 - kalkulator BMI");
+        titles.put("Zadanie 7", "Zadanie 7");
+        titles.put("Zadanie 8", "Zadanie 8");
+        // TODO dodać resztę tytułów
     }
 
     private void showApp(String appName)
     {
         cardLayout.show(cardPanel, appName);
+        mainFrame.setTitle(titles.get(appName));
         switch (appName)
         {
+            case "Menu" -> menuBar.setVisible(false);
             case "Zadanie 2" -> updateMenuBarForExercise2();
             case "Zadanie 8" -> updateMenuBarForExercise8();
             default -> updateMenuBarForOthers();

@@ -23,9 +23,9 @@ public class Exercise4 extends JPanel
 
     public Exercise4()
     {
-        setLayout(new GridLayout(6, 2, 60, 20));
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setFont(new Font("Arial", Font.PLAIN, 16));
+        setLayout(new GridLayout(6, 2, 40, 20));
+        setBorder(BorderFactory.createEmptyBorder(20, -160, 20, 20));
+        setFont(new Font("Verdana", Font.PLAIN, 16));
         conversionRates = initializeConversionRates();
 
         JLabel categoryLabel = new JLabel("Kategoria:");
@@ -57,6 +57,7 @@ public class Exercise4 extends JPanel
         inputLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         inputField = new JTextField();
         inputField.setFont(this.getFont());
+        inputField.setMargin(new Insets(10, 10, 10, 10));
         add(inputLabel);
         add(inputField);
 
@@ -66,6 +67,7 @@ public class Exercise4 extends JPanel
         outputField = new JTextField();
         outputField.setFont(this.getFont());
         outputField.setEditable(false);
+        outputField.setMargin(new Insets(10, 10, 10, 10));
         add(outputLabel);
         add(outputField);
 

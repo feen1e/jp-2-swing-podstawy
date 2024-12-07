@@ -19,13 +19,13 @@ public class Exercise3 extends JPanel
     {
         listModel = new DefaultListModel<>();
         shoppingList = new JList<>(listModel);
-        shoppingList.setFont(new Font("Arial", Font.PLAIN, 16));
+
         shoppingList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         shoppingList.setFixedCellHeight(20);
         shoppingList.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 10));
 
         inputField.addActionListener(this::addToList);
-        inputField.setFont(new Font("Arial", Font.PLAIN, 16));
+
         inputField.setMargin(new Insets(5, 10, 5, 10));
 
         JButton addButton = new JButton("Dodaj");
