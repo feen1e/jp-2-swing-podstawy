@@ -97,7 +97,7 @@ public class MainApp
         ex7Button.addActionListener((ActionEvent e) -> showApp("Zadanie 7"));
         mainMenu.add(ex7Button);
 
-        JButton ex8Button = new JButton("Zadanie 8");
+        JButton ex8Button = new JButton("Zadanie 8 - prosty edytor tekstu");
         ex8Button.addActionListener((ActionEvent e) -> showApp("Zadanie 8"));
         mainMenu.add(ex8Button);
 
@@ -120,7 +120,7 @@ public class MainApp
         titles.put("Zadanie 5", "Zadanie 5");
         titles.put("Zadanie 6", "Zadanie 6 - kalkulator BMI");
         titles.put("Zadanie 7", "Zadanie 7 - aplikacja szyfrująca");
-        titles.put("Zadanie 8", "Zadanie 8");
+        titles.put("Zadanie 8", "Zadanie 8 - prosty edytor tekstu");
         // TODO dodać resztę tytułów
     }
 
