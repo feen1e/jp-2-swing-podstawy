@@ -93,7 +93,7 @@ public class MainApp
         ex6Button.addActionListener((ActionEvent e) -> showApp("Zadanie 6"));
         mainMenu.add(ex6Button);
 
-        JButton ex7Button = new JButton("Zadanie 7");
+        JButton ex7Button = new JButton("Zadanie 7 - aplikacja szyfrująca");
         ex7Button.addActionListener((ActionEvent e) -> showApp("Zadanie 7"));
         mainMenu.add(ex7Button);
 
@@ -119,7 +119,7 @@ public class MainApp
         titles.put("Zadanie 4", "Zadanie 4 - konwerter jednostek");
         titles.put("Zadanie 5", "Zadanie 5");
         titles.put("Zadanie 6", "Zadanie 6 - kalkulator BMI");
-        titles.put("Zadanie 7", "Zadanie 7");
+        titles.put("Zadanie 7", "Zadanie 7 - aplikacja szyfrująca");
         titles.put("Zadanie 8", "Zadanie 8");
         // TODO dodać resztę tytułów
     }
@@ -179,7 +179,32 @@ public class MainApp
 
     public void updateMenuBarForExercise8()
     {
-        // TODO zmienić !!!
-        updateMenuBarForOthers();
+        menuBar.setVisible(true);
+        menuBar.removeAll();
+        menuBar.add(backButton);
+        JButton open = new JButton("Wczytaj");
+        JButton save = new JButton("Zapisz");
+        JButton saveAs = new JButton("Zapisz jako");
+        JButton clear = new JButton("Wyczyść");
+        menuBar.add(open);
+        menuBar.add(save);
+        menuBar.add(saveAs);
+        menuBar.add(clear);
+        menuBar.revalidate();
+        menuBar.repaint();
+
+        Exercise8 exercise8 = (Exercise8) cardPanel.getComponent(8);
+        open.addActionListener((ActionEvent e) -> {
+            exercise8.open();
+        });
+        save.addActionListener((ActionEvent e) -> {
+            exercise8.save();
+        });
+        saveAs.addActionListener((ActionEvent e) -> {
+            exercise8.saveAs();
+        });
+        clear.addActionListener((ActionEvent e) -> {
+            exercise8.clear();
+        });
     }
 }

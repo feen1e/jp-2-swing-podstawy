@@ -58,7 +58,6 @@ public class Exercise6 extends JPanel
         resultField = new JTextField();
         resultField.setFont(this.getFont());
         resultField.setEditable(false);
-        resultField.setBackground(Color.white);
         JPanel resultPanel = new JPanel();
         resultPanel.setLayout(new GridLayout(1, 2, 20, 10));
         resultPanel.add(resultLabel);
