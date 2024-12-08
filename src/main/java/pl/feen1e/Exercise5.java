@@ -20,6 +20,7 @@ public class Exercise5 extends JPanel
     private final ArrayList<String> correctAnswers = new ArrayList<>();
     private final ArrayList<String> givenAnswers = new ArrayList<>();
     private int currentQuestion = 0;
+    private int resultPoints = 0;
 
     public Exercise5()
     {
@@ -33,27 +34,66 @@ public class Exercise5 extends JPanel
             correctAnswers.add(entry.getKey());
         }
 
-        for (int i = 0; i < questionPanels.size(); i++)
-        {
-            cardPanel.add(questionPanels.get(i), "Pytanie " + (i + 1));
-        }
-
         JPanel resultsPanel = new JPanel();
         resultsPanel.setLayout(new BorderLayout(20, 20));
-        int resultPoints = calculateResult();
-        JLabel result =
-                new JLabel("Odpowiedziano poprawnie na " + resultPoints + " pytań." + (resultPoints == correctAnswers.size() ? "Gratulacje!" : ""));
+        JLabel result = new JLabel();
+        JButton resetButton = getResetButton();
 
+        resultsPanel.add(result, BorderLayout.CENTER);
+        resultsPanel.add(resetButton, BorderLayout.SOUTH);
+
+        for (int i = 0; i < questionPanels.size(); i++)
+        {
+
+            JButton nextButton = getNextButton(result);
+
+            JPanel panel = new JPanel();
+            panel.setLayout(new BorderLayout(10, 10));
+            panel.add(questionPanels.get(i), BorderLayout.CENTER);
+            panel.add(nextButton, BorderLayout.SOUTH);
+            cardPanel.add(panel, "Pytanie " + (i + 1));
+        }
+
+        cardPanel.add(resultsPanel, "Wynik");
+    }
+
+    private JButton getNextButton(JLabel result)
+    {
         JButton nextButton = new JButton("Dalej");
         nextButton.addActionListener((ActionEvent e) -> {
-            Question q = (Question) cardPanel.getComponent(currentQuestion);
+            Question q = (Question) cardPanel.getComponent(currentQuestion).getComponentAt(10, 10);
             givenAnswers.add(q.givenAnswer);
             cardLayout.next(cardPanel);
             currentQuestion += 1;
+            if (currentQuestion == questions.size())
+            {
+                System.out.println(currentQuestion + " " + questions.size());
+                System.out.println(correctAnswers);
+                System.out.println(givenAnswers);
+                resultPoints = calculateResult();
+                result.setText("Odpowiedziano poprawnie na " + resultPoints + " z " + questionPanels.size() + " " +
+                        "pytań." + (resultPoints == correctAnswers.size() ? "Gratulacje!" : ""));
+                result.repaint();
+            }
         });
+        return nextButton;
+    }
 
-        add(nextButton, BorderLayout.SOUTH);
-
+    private JButton getResetButton()
+    {
+        JButton resetButton = new JButton("Zacznij rozwiązywać ponownie");
+        resetButton.addActionListener((ActionEvent e) -> {
+            currentQuestion = 0;
+            resultPoints = 0;
+            givenAnswers.clear();
+            cardLayout.show(cardPanel, "Pytanie 1");
+            for (int i = 0; i < questionPanels.size(); i++)
+            {
+                Question q = (Question) cardPanel.getComponent(i).getComponentAt(10, 10);
+                q.resetQuestion();
+            }
+        });
+        return resetButton;
     }
 
     private int calculateResult()
@@ -62,10 +102,13 @@ public class Exercise5 extends JPanel
 
         for (int i = 0; i < correctAnswers.size(); i++)
         {
+            System.out.println(correctAnswers.get(i) + " " + givenAnswers.get(i));
             if (correctAnswers.get(i).equals(givenAnswers.get(i)))
             {
+                System.out.println("+ 1 punkt");
                 resultPoints += 1;
             }
+            System.out.println("Punkty: " + resultPoints);
         }
 
         return resultPoints;
@@ -94,9 +137,8 @@ public class Exercise5 extends JPanel
                 new String[]{"W którym roku człowiek pierwszy raz stanął na Księżycu?", "1965", "1967", "1969", "1971"});
     }
 
-    protected class Question extends JPanel
+    protected static class Question extends JPanel
     {
-        private final JLabel question;
         private final JButton answerUL; // Upper left
         private final JButton answerLL; // Lower left
         private final JButton answerUR; // Upper right
@@ -105,7 +147,7 @@ public class Exercise5 extends JPanel
 
         protected Question(String[] questionAndAnswers)
         {
-            this.question = new JLabel(questionAndAnswers[0]);
+            JLabel question = new JLabel(questionAndAnswers[0]);
             this.answerUL = new JButton(questionAndAnswers[1]);
             this.answerLL = new JButton(questionAndAnswers[2]);
             this.answerUR = new JButton(questionAndAnswers[3]);
@@ -147,6 +189,15 @@ public class Exercise5 extends JPanel
             answerLL.setEnabled(false);
             answerUR.setEnabled(false);
             answerLR.setEnabled(false);
+        }
+
+        private void resetQuestion()
+        {
+            answerUL.setEnabled(true);
+            answerLL.setEnabled(true);
+            answerUR.setEnabled(true);
+            answerLR.setEnabled(true);
+            givenAnswer = "";
         }
     }
 }

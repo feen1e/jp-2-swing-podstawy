@@ -84,7 +84,7 @@ public class MainApp
         ex4Button.addActionListener((ActionEvent e) -> showApp("Zadanie 4"));
         mainMenu.add(ex4Button);
 
-        JButton ex5Button = new JButton("Zadanie 5");
+        JButton ex5Button = new JButton("Zadanie 5 - quiz wiedzy ogólnej");
         ex5Button.addActionListener((ActionEvent e) -> showApp("Zadanie 5"));
         mainMenu.add(ex5Button);
 
@@ -103,7 +103,6 @@ public class MainApp
         JButton exitButton = new JButton("Zamknij program");
         exitButton.addActionListener((ActionEvent e) -> System.exit(0));
         mainMenu.add(exitButton);
-        // TODO dodać tytuły reszty zadań
 
         menuPanel.add(mainMenu, BorderLayout.CENTER);
         return menuPanel;
@@ -116,11 +115,10 @@ public class MainApp
         titles.put("Zadanie 2", "Zadanie 2 - prosty notatnik");
         titles.put("Zadanie 3", "Zadanie 3 - lista zakupów");
         titles.put("Zadanie 4", "Zadanie 4 - konwerter jednostek");
-        titles.put("Zadanie 5", "Zadanie 5");
+        titles.put("Zadanie 5", "Zadanie 5 - quiz wiedzy ogólnej");
         titles.put("Zadanie 6", "Zadanie 6 - kalkulator BMI");
         titles.put("Zadanie 7", "Zadanie 7 - aplikacja szyfrująca");
         titles.put("Zadanie 8", "Zadanie 8 - prosty edytor tekstu");
-        // TODO dodać resztę tytułów
     }
 
     private void showApp(String appName)
