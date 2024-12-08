@@ -54,7 +54,6 @@ public class MainApp
         mainFrame.setJMenuBar(menuBar);
         mainFrame.add(cardPanel);
         mainFrame.setVisible(true);
-
     }
 
     public JPanel createMenu()
