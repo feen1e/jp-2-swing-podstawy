@@ -25,7 +25,8 @@ public class Exercise5 extends JPanel
     public Exercise5()
     {
         initializeQuestions();
-        setLayout(new BorderLayout(10, 10));
+        setLayout(new BorderLayout(20, 20));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         add(cardPanel, BorderLayout.CENTER);
 
         for (HashMap.Entry<String, String[]> entry : questions.entrySet())
@@ -36,6 +37,7 @@ public class Exercise5 extends JPanel
 
         JPanel resultsPanel = new JPanel();
         resultsPanel.setLayout(new BorderLayout(20, 20));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         JLabel result = new JLabel();
         JButton resetButton = getResetButton();
 
@@ -48,7 +50,7 @@ public class Exercise5 extends JPanel
             JButton nextButton = getNextButton(result);
 
             JPanel panel = new JPanel();
-            panel.setLayout(new BorderLayout(10, 10));
+            panel.setLayout(new BorderLayout(20, 20));
             panel.add(questionPanels.get(i), BorderLayout.CENTER);
             panel.add(nextButton, BorderLayout.SOUTH);
             cardPanel.add(panel, "Pytanie " + (i + 1));
@@ -67,7 +69,6 @@ public class Exercise5 extends JPanel
             currentQuestion += 1;
             if (currentQuestion == questions.size())
             {
-                System.out.println(currentQuestion + " " + questions.size());
                 System.out.println(correctAnswers);
                 System.out.println(givenAnswers);
                 resultPoints = calculateResult();
@@ -102,13 +103,10 @@ public class Exercise5 extends JPanel
 
         for (int i = 0; i < correctAnswers.size(); i++)
         {
-            System.out.println(correctAnswers.get(i) + " " + givenAnswers.get(i));
             if (correctAnswers.get(i).equals(givenAnswers.get(i)))
             {
-                System.out.println("+ 1 punkt");
                 resultPoints += 1;
             }
-            System.out.println("Punkty: " + resultPoints);
         }
 
         return resultPoints;
@@ -153,7 +151,7 @@ public class Exercise5 extends JPanel
             this.answerUR = new JButton(questionAndAnswers[3]);
             this.answerLR = new JButton((questionAndAnswers[4]));
 
-            setLayout(new GridLayout(2, 1, 10, 50));
+            setLayout(new GridLayout(2, 1, 20, 50));
             add(question);
 
             JPanel answersPanel = new JPanel();
