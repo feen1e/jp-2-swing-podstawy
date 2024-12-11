@@ -3,6 +3,7 @@ package pl.feen1e;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 /*
  * Utwórz prostą aplikację do zarządzania listą zakupów. Interfejs powinien zawierać pole tekstowe,
@@ -33,6 +34,16 @@ public class Exercise3 extends JPanel
 
         JButton removeButton = new JButton("Usuń");
         removeButton.addActionListener(this::removeFromList);
+        removeButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                    .put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "delete");
+        removeButton.getActionMap().put("delete", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                removeButton.doClick();
+            }
+        });
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout(5, 5));

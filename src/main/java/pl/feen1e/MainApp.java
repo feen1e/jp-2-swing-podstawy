@@ -5,6 +5,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 public class MainApp
@@ -50,6 +51,16 @@ public class MainApp
         menuBar = new JMenuBar();
         backButton = new JButton("Powrót do Menu");
         backButton.addActionListener((ActionEvent e) -> showApp("Menu"));
+        backButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                  .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "backAction");
+        backButton.getActionMap().put("backAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                backButton.doClick();
+            }
+        });
 
         mainFrame.setJMenuBar(menuBar);
         mainFrame.add(cardPanel);
@@ -160,18 +171,63 @@ public class MainApp
         menuBar.repaint();
 
         Exercise2 exercise2 = (Exercise2) cardPanel.getComponent(2);
+
         newNote.addActionListener((ActionEvent e) -> {
             exercise2.newNote();
         });
+        newNote.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ctrl N"), "newAction");
+        newNote.getActionMap().put("newAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                newNote.doClick();
+            }
+        });
+        newNote.setToolTipText("Utwórz nową notatkę (ctrl+N)");
+
         openNote.addActionListener((ActionEvent e) -> {
             exercise2.openNote();
         });
+        openNote.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ctrl O"), "openAction");
+        openNote.getActionMap().put("openAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                openNote.doClick();
+            }
+        });
+        openNote.setToolTipText("Otwórz zapisaną notatkę (ctrl+O)");
+
         saveNote.addActionListener((ActionEvent e) -> {
             exercise2.saveNote();
         });
+        saveNote.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ctrl S"), "saveAction");
+        saveNote.getActionMap().put("saveAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                saveNote.doClick();
+            }
+        });
+        saveNote.setToolTipText("Zapisz notatkę na dysku (ctrl+S)");
+
         closeNote.addActionListener((ActionEvent e) -> {
             exercise2.closeNote();
         });
+        closeNote.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                 .put(KeyStroke.getKeyStroke("ctrl shift C"), "closeAction");
+        closeNote.getActionMap().put("closeAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                closeNote.doClick();
+            }
+        });
+        closeNote.setToolTipText("Zamknij otwartą notatkę (ctrl+shift+C)");
     }
 
     public void updateMenuBarForExercise8()
@@ -191,17 +247,62 @@ public class MainApp
         menuBar.repaint();
 
         Exercise8 exercise8 = (Exercise8) cardPanel.getComponent(8);
+
         open.addActionListener((ActionEvent e) -> {
             exercise8.open();
         });
+        open.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ctrl O"), "openAction");
+        open.getActionMap().put("openAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                open.doClick();
+            }
+        });
+        open.setToolTipText("Otwórz plik z dysku (ctrl+O)");
+
         save.addActionListener((ActionEvent e) -> {
             exercise8.save();
         });
+        save.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ctrl S"), "saveAction");
+        save.getActionMap().put("saveAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                save.doClick();
+            }
+        });
+        save.setToolTipText("Zapisz plik na dysku (ctrl+S)");
+
         saveAs.addActionListener((ActionEvent e) -> {
             exercise8.saveAs();
         });
+        saveAs.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+              .put(KeyStroke.getKeyStroke("ctrl shift S"), "saveAsAction");
+        saveAs.getActionMap().put("saveAsAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                saveAs.doClick();
+            }
+        });
+        saveAs.setToolTipText("Zapisz jako nowy plik na dysku (ctrl+shift+S)");
+
         clear.addActionListener((ActionEvent e) -> {
             exercise8.clear();
         });
+        clear.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ctrl shift C"), "clearAction");
+        clear.getActionMap().put("clearAction", new AbstractAction()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                clear.doClick();
+            }
+        });
+        clear.setToolTipText("Wyczyść zawartość pliku (ctrl+shift+C)");
     }
 }

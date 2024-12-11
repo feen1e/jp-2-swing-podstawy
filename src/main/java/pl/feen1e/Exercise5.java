@@ -1,6 +1,9 @@
 package pl.feen1e;
 
 import javax.swing.*;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -38,17 +41,24 @@ public class Exercise5 extends JPanel
         JPanel resultsPanel = new JPanel();
         resultsPanel.setLayout(new BorderLayout(20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        JLabel result = new JLabel();
         JButton resetButton = getResetButton();
+        resetButton.setFont(new Font("Verdana", Font.PLAIN, 18));
+
+        JTextPane result = new JTextPane();
+        result.setEditable(false);
+        StyledDocument doc = result.getStyledDocument();
+        SimpleAttributeSet centerAlignment = new SimpleAttributeSet();
+        StyleConstants.setAlignment(centerAlignment, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), centerAlignment, false);
+        result.setFont(new Font("Verdana", Font.PLAIN, 30));
+        result.setMargin(new Insets(210, 20, 20, 20));
 
         resultsPanel.add(result, BorderLayout.CENTER);
         resultsPanel.add(resetButton, BorderLayout.SOUTH);
 
         for (int i = 0; i < questionPanels.size(); i++)
         {
-
             JButton nextButton = getNextButton(result);
-
             JPanel panel = new JPanel();
             panel.setLayout(new BorderLayout(20, 20));
             panel.add(questionPanels.get(i), BorderLayout.CENTER);
@@ -59,11 +69,11 @@ public class Exercise5 extends JPanel
         cardPanel.add(resultsPanel, "Wynik");
     }
 
-    private JButton getNextButton(JLabel result)
+    private JButton getNextButton(JTextPane result)
     {
         JButton nextButton = new JButton("Dalej");
         nextButton.addActionListener((ActionEvent e) -> {
-            Question q = (Question) cardPanel.getComponent(currentQuestion).getComponentAt(10, 10);
+            Question q = (Question) ((JPanel) cardPanel.getComponent(currentQuestion)).getComponent(0);
             givenAnswers.add(q.givenAnswer);
             cardLayout.next(cardPanel);
             currentQuestion += 1;
@@ -72,11 +82,12 @@ public class Exercise5 extends JPanel
                 System.out.println(correctAnswers);
                 System.out.println(givenAnswers);
                 resultPoints = calculateResult();
-                result.setText("Odpowiedziano poprawnie na " + resultPoints + " z " + questionPanels.size() + " " +
-                        "pytań." + (resultPoints == correctAnswers.size() ? "Gratulacje!" : ""));
+                result.setText("Odpowiedziano poprawnie na " + resultPoints + " z " + questionPanels.size() +
+                                       " pytań." + (resultPoints == correctAnswers.size() ? " Gratulacje!" : ""));
                 result.repaint();
             }
         });
+        nextButton.setFont(new Font("Verdana", Font.PLAIN, 18));
         return nextButton;
     }
 
@@ -114,25 +125,16 @@ public class Exercise5 extends JPanel
 
     private void initializeQuestions()
     {
-        questions.put("Tlen",
-                new String[]{"Który pierwiastek chemiczny ma symbol 'O'?", "Tlen", "Wodór", "Azot", "Hel"});
+        questions.put("Tlen", new String[]{"Który pierwiastek chemiczny ma symbol 'O'?", "Tlen", "Wodór", "Azot", "Hel"});
         questions.put("Paryż", new String[]{"Które miasto jest stolicą Francji?", "Londyn", "Berlin", "Paryż", "Rzym"});
-        questions.put("3.14",
-                new String[]{"Ile wynosi liczba Pi zaokrąglona do dwóch miejsc po przecinku?", "3.12", "3.14", "3.16", "3.18"});
-        questions.put("Ocean Spokojny",
-                new String[]{"Jak nazywa się największy ocean na Ziemi?", "Ocean Atlantycki", "Ocean Indyjski", "Ocean Arktyczny", "Ocean Spokojny"});
-        questions.put("Thomas Edison",
-                new String[]{"Który wynalazca jest znany z opracowania żarówki elektrycznej?", "Nikola Tesla", "Thomas Edison", "Alexander Bell", "Albert Einstein"});
-        questions.put("Chiński",
-                new String[]{"Który język jest najczęściej używany na świecie?", "Angielski", "Chiński", "Hiszpański", "Hinduski"});
-        questions.put("Jowisz",
-                new String[]{"Jak nazywa się największa planeta w Układzie Słonecznym?", "Ziemia", "Mars", "Jowisz", "Saturn"});
-        questions.put("Australia",
-                new String[]{"Który kontynent jest najmniejszy pod względem powierzchni?", "Antarktyda", "Europa", "Australia", "Afryka"});
-        questions.put("Sherlock Holmes",
-                new String[]{"Która postać literacka była detektywem w książkach Sir Arthura Conan Doyle’a?", "Hercule Poirot", "Sherlock Holmes", "Philip Marlowe", "James Bond"});
-        questions.put("1969",
-                new String[]{"W którym roku człowiek pierwszy raz stanął na Księżycu?", "1965", "1967", "1969", "1971"});
+        questions.put("3.14", new String[]{"Ile wynosi liczba Pi zaokrąglona do dwóch miejsc po przecinku?", "3.12", "3.14", "3.16", "3.18"});
+        questions.put("Ocean Spokojny", new String[]{"Jak nazywa się największy ocean na Ziemi?", "Ocean Atlantycki", "Ocean Indyjski", "Ocean Arktyczny", "Ocean Spokojny"});
+        questions.put("Thomas Edison", new String[]{"Który wynalazca jest znany z opracowania żarówki elektrycznej?", "Nikola Tesla", "Thomas Edison", "Alexander Bell", "Albert Einstein"});
+        questions.put("Chiński", new String[]{"Który język jest najczęściej używany na świecie?", "Angielski", "Chiński", "Hiszpański", "Hinduski"});
+        questions.put("Jowisz", new String[]{"Jak nazywa się największa planeta w Układzie Słonecznym?", "Ziemia", "Mars", "Jowisz", "Saturn"});
+        questions.put("Australia", new String[]{"Który kontynent jest najmniejszy pod względem powierzchni?", "Antarktyda", "Europa", "Australia", "Afryka"});
+        questions.put("Sherlock Holmes", new String[]{"Która postać literacka była detektywem w książkach Sir Arthura Conan Doyle’a?", "Hercule Poirot", "Sherlock Holmes", "Philip Marlowe", "James Bond"});
+        questions.put("1969", new String[]{"W którym roku człowiek pierwszy raz stanął na Księżycu?", "1965", "1967", "1969", "1971"});
     }
 
     protected static class Question extends JPanel
@@ -145,11 +147,28 @@ public class Exercise5 extends JPanel
 
         protected Question(String[] questionAndAnswers)
         {
-            JLabel question = new JLabel(questionAndAnswers[0]);
-            this.answerUL = new JButton(questionAndAnswers[1]);
-            this.answerLL = new JButton(questionAndAnswers[2]);
-            this.answerUR = new JButton(questionAndAnswers[3]);
-            this.answerLR = new JButton((questionAndAnswers[4]));
+            JTextPane question = new JTextPane();
+            question.setText(questionAndAnswers[0]);
+            question.setEditable(false);
+
+            StyledDocument doc = question.getStyledDocument();
+            SimpleAttributeSet centerAlignment = new SimpleAttributeSet();
+            StyleConstants.setAlignment(centerAlignment, StyleConstants.ALIGN_CENTER);
+            doc.setParagraphAttributes(0, doc.getLength(), centerAlignment, false);
+            question.setFont(new Font("Verdana", Font.PLAIN, 25));
+            question.setMargin(new Insets(120, 20, 20, 20));
+
+            answerUL = new JButton(questionAndAnswers[1]);
+            answerUL.setFont(new Font("Verdana", Font.PLAIN, 18));
+
+            answerLL = new JButton(questionAndAnswers[2]);
+            answerLL.setFont(new Font("Verdana", Font.PLAIN, 18));
+
+            answerUR = new JButton(questionAndAnswers[3]);
+            answerUR.setFont(new Font("Verdana", Font.PLAIN, 18));
+
+            answerLR = new JButton((questionAndAnswers[4]));
+            answerLR.setFont(new Font("Verdana", Font.PLAIN, 18));
 
             setLayout(new GridLayout(2, 1, 20, 50));
             add(question);
@@ -164,19 +183,19 @@ public class Exercise5 extends JPanel
             add(answersPanel);
 
             answerUL.addActionListener((ActionEvent e) -> {
-                this.givenAnswer = answerUL.getText();
+                givenAnswer = answerUL.getText();
                 blockAllButtons();
             });
             answerLL.addActionListener((ActionEvent e) -> {
-                this.givenAnswer = answerLL.getText();
+                givenAnswer = answerLL.getText();
                 blockAllButtons();
             });
             answerUR.addActionListener((ActionEvent e) -> {
-                this.givenAnswer = answerUR.getText();
+                givenAnswer = answerUR.getText();
                 blockAllButtons();
             });
             answerLR.addActionListener((ActionEvent e) -> {
-                this.givenAnswer = answerLR.getText();
+                givenAnswer = answerLR.getText();
                 blockAllButtons();
             });
         }

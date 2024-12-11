@@ -33,21 +33,26 @@ public class Exercise7 extends JPanel
         JLabel cipherLabel = new JLabel("Wybierz sposób szyfrowania:", SwingConstants.CENTER);
         inputField = new JTextField();
         cipherBox = new JComboBox<>();
+
+        inputLabel.setFont(new Font("Verdana", Font.PLAIN, 16));
+        cipherLabel.setFont(new Font("Verdana", Font.PLAIN, 16));
+        inputField.setFont(new Font("Verdana", Font.PLAIN, 16));
+        cipherBox.setFont(new Font("Verdana", Font.PLAIN, 16));
         initializeCipherBox();
 
         GroupLayout.SequentialGroup hGroup = groupLayout.createSequentialGroup();
         hGroup.addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addComponent(inputLabel).addComponent(inputField));
+                                   .addComponent(inputLabel).addComponent(inputField));
         hGroup.addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addComponent(cipherLabel).addComponent(cipherBox));
+                                   .addComponent(cipherLabel).addComponent(cipherBox));
         groupLayout.setHorizontalGroup(hGroup);
 
         GroupLayout.SequentialGroup vGroup = groupLayout.createSequentialGroup();
         vGroup.addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                .addComponent(inputLabel).addComponent(cipherLabel));
+                                   .addComponent(inputLabel).addComponent(cipherLabel));
         vGroup.addGap(20);
         vGroup.addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                .addComponent(inputField).addComponent(cipherBox));
+                                   .addComponent(inputField).addComponent(cipherBox));
         groupLayout.setVerticalGroup(vGroup);
 
         add(inputPanel);
@@ -56,6 +61,9 @@ public class Exercise7 extends JPanel
         JLabel resultLabel = new JLabel("Wynik:", SwingConstants.RIGHT);
         resultField = new JTextField();
         resultField.setEditable(false);
+        encodeButton.setFont(new Font("Verdana", Font.PLAIN, 16));
+        resultLabel.setFont(new Font("Verdana", Font.PLAIN, 16));
+        resultField.setFont(new Font("Verdana", Font.PLAIN, 16));
 
         JPanel encodePanel = new JPanel();
         encodePanel.setLayout(new BorderLayout());

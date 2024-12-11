@@ -2,6 +2,7 @@ package pl.feen1e;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -58,6 +59,10 @@ public class Exercise4 extends JPanel
         inputField = new JTextField();
         inputField.setFont(this.getFont());
         inputField.setMargin(new Insets(10, 10, 10, 10));
+        inputField.addActionListener((ActionEvent e) -> {
+            convertUnits();
+        });
+
         add(inputLabel);
         add(inputField);
 

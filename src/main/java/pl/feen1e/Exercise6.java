@@ -14,6 +14,7 @@ public class Exercise6 extends JPanel
     private final JTextField massField;
     private final JTextField heightField;
     private final JTextField resultField;
+
     public Exercise6()
     {
         setLayout(new GridLayout(6, 1, 10, 50));

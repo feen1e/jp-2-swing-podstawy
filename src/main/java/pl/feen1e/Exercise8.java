@@ -74,7 +74,7 @@ public class Exercise8 extends JPanel
         catch (IOException e)
         {
             JOptionPane.showMessageDialog(this, "Błąd podczas zapisywania pliku", "Błąd",
-                    JOptionPane.ERROR_MESSAGE);
+                                          JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -100,7 +100,7 @@ public class Exercise8 extends JPanel
             catch (IOException e)
             {
                 JOptionPane.showMessageDialog(this, "Błąd podczas zapisywania pliku", "Błąd",
-                        JOptionPane.ERROR_MESSAGE);
+                                              JOptionPane.ERROR_MESSAGE);
             }
         }
     }

@@ -50,7 +50,7 @@ public class Exercise1 extends JPanel
         JPanel inputPanel = new JPanel(new BorderLayout(5, 5));
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         inputPanel.add(new JLabel("Wpisz nazwę koloru na który ma zostać zmienione tło: ", SwingConstants.CENTER),
-                BorderLayout.NORTH);
+                       BorderLayout.NORTH);
         inputPanel.add(colourField, BorderLayout.CENTER);
         inputPanel.add(colourButton, BorderLayout.EAST);
 
@@ -63,9 +63,12 @@ public class Exercise1 extends JPanel
     private void changeColour(ActionEvent e)
     {
         String colorName = colourField.getText().toLowerCase().trim();
-        if (colourMap.containsKey(colorName)) {
+        if (colourMap.containsKey(colorName))
+        {
             colourPanel.setBackground(colourMap.get(colorName));
-        } else {
+        }
+        else
+        {
             JOptionPane.showMessageDialog(
                     this,
                     "Brak koloru: " + colorName,
