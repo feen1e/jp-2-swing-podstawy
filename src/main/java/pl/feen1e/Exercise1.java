@@ -40,17 +40,20 @@ public class Exercise1 extends JPanel
         colourField = new JTextField();
         colourField.setToolTipText("Wprowadź nazwę koloru: ");
         colourField.addActionListener(this::changeColour);
+        colourField.setFont(new Font("Verdana", Font.PLAIN, 16));
 
         colourButton = new JButton("Zmień kolor");
         colourButton.addActionListener(this::changeColour);
+        colourButton.setFont(new Font("Verdana", Font.PLAIN, 16));
 
         colourPanel = new JPanel();
         colourPanel.setBackground(Color.WHITE);
 
         JPanel inputPanel = new JPanel(new BorderLayout(5, 5));
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        inputPanel.add(new JLabel("Wpisz nazwę koloru na który ma zostać zmienione tło: ", SwingConstants.CENTER),
-                       BorderLayout.NORTH);
+        JLabel inputLabel = new JLabel("Wpisz nazwę koloru na który ma zostać zmienione tło: ", SwingConstants.CENTER);
+        inputLabel.setFont(new Font("Verdana", Font.PLAIN, 16));
+        inputPanel.add(inputLabel, BorderLayout.NORTH);
         inputPanel.add(colourField, BorderLayout.CENTER);
         inputPanel.add(colourButton, BorderLayout.EAST);
 
