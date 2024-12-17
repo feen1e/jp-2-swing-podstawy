@@ -1,4 +1,4 @@
-# Proszę zrobić tyle zadań ile się uda. Można realizować niektóre zadania jako funkcjonalności tego samego programu.
+## Proszę zrobić tyle zadań ile się uda. Można realizować niektóre zadania jako funkcjonalności tego samego programu.
 
 1. Stwórz interfejs GUI z JFrame, który zawiera komponenty: JTextField, JButton i JPanel. Użytkownik powinien móc
    wprowadzić nazwę koloru w JTextField, a po kliknięciu przycisku, kolor tła JPanel powinien zmieniać się na podstawie
@@ -29,3 +29,5 @@
     * Przycisk "Zapisz": Po kliknięciu tego przycisku zawartość pola tekstowego powinna być zapisana do pliku na dysku.
     * Przycisk "Wczytaj": Po kliknięciu tego przycisku użytkownik powinien móc wybrać plik z dysku, a jego zawartość
       powinna być wczytana i wyświetlona w polu tekstowym.
+
+# Prowadzący: dr inż. Tomasz Babczyński
